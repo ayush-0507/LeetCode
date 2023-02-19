@@ -1,0 +1,116 @@
+Input: matrix = [[1,2,3],[4,5,6],[7,8,9]]
+Output: [1,2,3,6,9,8,7,4,5]
+
+
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer>res=new ArrayList<>();
+       
+       int row=matrix.length;
+       int col=matrix[0].length;
+
+       if(row==0){
+           return res;
+       }
+
+       int l=0;
+       int r=col-1;
+       int t=0;
+       int b=row-1;
+       int d=0;
+
+       while(l<=r && t<=b){
+           if(d==0){
+               for(int i=l;i<=r;i++){
+                   res.add(matrix[t][i]);
+               }
+               d=1;
+               t++;
+           }
+           else if(d==1){
+              for(int i=t;i<=b;i++){
+                  res.add(matrix[i][r]);
+              }
+              d=2;
+              r--;
+           }
+           else if(d==2){
+              for(int i=r;i>=l;i--){
+                  res.add(matrix[b][i]);
+              }
+              d=3;
+              b--;
+           }
+           else if(d==3){
+             for(int i=b;i>=t;i--){
+                 res.add(matrix[i][l]);
+             }
+             d=0;l++;
+           }
+       }
+        return res;
+    }
+}
+
+
+
+
+Input: n = 3
+Output: [[1,2,3],[8,9,4],[7,6,5]]
+
+
+
+class Solution {
+    public int[][] generateMatrix(int n) {
+        int[][]res=new int[n][n];
+        int row=n;
+        int col=n;
+        if(row==0){
+           return res;
+       }
+ 
+     int l=0;
+       int r=col-1;
+       int t=0;
+       int b=row-1;
+       int d=0;
+       int num=1;
+       while(l<=r && t<=b){
+           if(d==0){
+               for(int i=l;i<=r;i++){
+                   res[t][i]=num;
+                   num++;
+               }
+               d=1;
+               t++;
+           }
+           else if(d==1){
+              for(int i=t;i<=b;i++){
+                   res[i][r]=num;
+                   num++;
+              }
+              d=2;
+              r--;
+           }
+           else if(d==2){
+              for(int i=r;i>=l;i--){
+                   res[b][i]=num;
+                   num++;
+              }
+              d=3;
+              b--;
+           }
+           else if(d==3){
+             for(int i=b;i>=t;i--){
+                 res[i][l]=num;
+                   num++;
+             }
+             d=0;l++;
+           }
+       }
+        return res;
+
+
+    }
+}
