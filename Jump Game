@@ -1,0 +1,45 @@
+Input: nums = [2,3,1,1,4]
+Output: true
+
+
+class Solution {
+    public boolean canJump(int[] nums) {
+      if(nums.length==1){
+          return true;
+      }
+
+      int maxReach=0;
+      for(int i=0;i<=maxReach;i++){
+          maxReach=Math.max(maxReach,nums[i]+i);
+          if(maxReach>=nums.length-1){
+              return true;
+          }
+      }
+
+
+      return false;
+    }
+}
+
+
+Input: nums = [2,3,1,1,4]
+Output: 2
+Explanation: The minimum number of jumps to reach the last index is 2. Jump 1 step from index 0 to 1, then 3 steps to the last index.
+
+
+class Solution {
+    public int jump(int[] nums) {
+     int jump=0;
+     int des=0;
+     int curr=0;
+     for(int i=0;i<nums.length-1;i++){
+         des=Math.max(des,nums[i]+i);
+
+         if(curr==i){
+             curr=des;
+             jump++;
+         }
+     }
+     return jump;
+    }
+}
